@@ -1,0 +1,37 @@
+<div>
+  <div [ngBusy]="busy"></div>
+
+  <div class="container">
+    <div class="card">
+      <h3 class="card-header">Person Groups</h3>
+      <div class="card-block">
+        <button class="btn btn-primary mb-sm-2" (click)="createPersonGroup()">New Person Group</button>
+
+        <table class="table table-striped table-hover">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Person Group ID</th>
+              <th>Name</th>
+              <th>User Data</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let group of personGroups">
+              <td>{{group.personGroupId}}</td>
+              <td>{{group.name}}</td>
+              <td>{{group.userData}}</td>
+              <td>
+                <a class="btn btn-info btn-sm mr-sm-1" [routerLink]="['/person-groups', group.personGroupId]">View</a>
+                <!-- <button class="btn btn-warning btn-sm mr-sm-1">Edit</button>
+                <button class="btn btn-danger btn-sm">Delete</button> -->
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

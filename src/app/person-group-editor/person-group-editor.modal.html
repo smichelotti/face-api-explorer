@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title">Create New Person Group</h4>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label>ID:</label>
+        <input type="text" class="form-control" name="groupName" [(ngModel)]="editableItem.personGroupId" />
+    </div>
+    <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" name="groupName" [(ngModel)]="editableItem.name" />
+    </div>
+    <div class="form-group">
+        <label>User Data:</label>
+        <input type="text" class="form-control" name="groupName" [(ngModel)]="editableItem.userData" />
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancelled')">Cancel</button>
+</div>

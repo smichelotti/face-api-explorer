@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title">Create New Face</h4>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label>URL:</label>
+        <input type="text" class="form-control" name="groupName" [(ngModel)]="editableItem.url" />
+    </div>
+    <div class="row">
+        <span *ngIf="editableItem.url" class="img-container"><img class="img-person-face img-thumnail" [src]="editableItem.url" height="140" width="140" /></span>
+    </div>
+   
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancelled')">Cancel</button>
+</div>

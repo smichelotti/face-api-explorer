@@ -19,7 +19,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "./css/bootstrap.darkly.min.css",
+        "./css/site.css",
+        "../node_modules/angular2-busy/build/style/busy.css",
+        "../node_modules/angular2-toaster/toaster.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -54,6 +58,9 @@
     }
   },
   "defaults": {
+    "serve": {
+      "port": 4201
+    },
     "styleExt": "css",
     "component": {}
   }

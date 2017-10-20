@@ -1,0 +1,110 @@
+<div>
+  <div [ngBusy]="busy"></div>
+
+  <div class="container">
+    <div class="card">
+      <h3 class="card-header">Test Faces</h3>
+      <div class="card-block">
+        <div class="form-group">
+          <label>Person Group:</label>
+          <select [(ngModel)]="selectedGroupId" name="personGroups" class="form-control"> 
+            <option value="">(Select)</option>
+            <option *ngFor="let group of personGroups" [value]="group.personGroupId">{{group.name}} ({{group.personGroupId}})</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Image URL:</label>
+          <input type="text" class="form-control" style="max-width:800px" name="groupName" [(ngModel)]="imageUrl" />
+        </div>
+
+        <!-- <div class="form-group row">
+          <label class="col-md-2 col-form-label">Image URL:</label>
+          <div class="col-md-10">
+          <input type="text" class="form-control" style="max-width:700px" name="groupName" [(ngModel)]="imageUrl" />
+
+          </div>
+        </div> -->
+
+        <button class="btn btn-primary mr-sm-2" (click)="analyzeFaces()">Face Analysis</button>
+        <!-- <button class="btn btn-primary mr-sm-2" (click)="analyzeObjects()">Object Analysis</button> -->
+        <button class="btn btn-info mr-sm-2" (click)="viewResults(content)" ngbTooltip="View Raw Face Results">
+            <i class="fa fa-info-circle"></i>
+        </button>
+
+        
+
+      </div>
+
+      <div class="card-block" *ngIf="selectedFace">
+        <h5>General:</h5>
+        <div class="row">
+          <div class="col-2">
+            Gender: {{selectedFace.faceAttributes.gender}}
+          </div>
+          <div class="col-2">
+            Age: {{selectedFace.faceAttributes.age}}
+          </div>
+          <div class="col-2">
+            Glasses: {{selectedFace.faceAttributes.glasses}}
+          </div>
+          <div class="col-2">
+            Smile: {{selectedFace.faceAttributes.smile}}
+          </div>
+        </div>
+        <hr/>
+
+        <h5>Emotions:</h5>
+        <div class="row">
+          <div class="col-2">Anger: {{selectedFace.faceAttributes.emotion.anger}}</div>
+          <div class="col-2">Contempt: {{selectedFace.faceAttributes.emotion.contempt}}</div>
+          <div class="col-2">Disgust: {{selectedFace.faceAttributes.emotion.disgust}}</div>
+          <div class="col-2">Fear: {{selectedFace.faceAttributes.emotion.fear}}</div>
+          <div class="col-2">Happiness: {{selectedFace.faceAttributes.emotion.happiness}}</div>
+          <div class="col-2">Neutral: {{selectedFace.faceAttributes.emotion.neutral}}</div>
+        </div>
+        <div class="row">
+          <div class="col-2">Sadness: {{selectedFace.faceAttributes.emotion.sadness}}</div>
+          <div class="col-2">Surprise: {{selectedFace.faceAttributes.emotion.surprise}}</div>
+        </div>
+        <hr/>
+
+        <h5>Facial Hair:</h5>
+        <div class="row">
+          <div class="col-2">Beard: {{selectedFace.faceAttributes.facialHair.beard}}</div>
+          <div class="col-2">Moustache: {{selectedFace.faceAttributes.facialHair.moustache}}</div>
+          <div class="col-2">Side burns: {{selectedFace.faceAttributes.facialHair.sideburns}}</div>
+        </div>
+
+        <hr *ngIf="selectedFace.identifiedPerson" />
+        <h4 class="text-success" *ngIf="selectedFace.identifiedPerson">Subject Identified!</h4>
+        <div class="row" *ngIf="selectedFace.identifiedPerson">
+          <div class="col-2">Name: {{selectedFace.identifiedPerson.name}}</div> 
+          <div class="col-2">Confidence: {{selectedFace.identifiedPersonConfidence}}</div>
+          <div class="col-2"><button class="btn btn-info" (click)="viewDetail()">View Detail</button></div>
+        </div>
+
+      </div>
+    
+      <div class="card-block">
+        <div class="mainImageContainer" *ngIf="imageUrl">
+          <img #mainImg class="card-img main-img" [src]="imageUrl" (load)="imageLoaded($event)" /> 
+
+          <div [ngClass]="{'face-box-green': item.identifiedPerson, 'face-box-yellow': !item.identifiedPerson}" *ngFor="let item of detectedFaces"
+            (click)="faceClicked(item)" [style.top.px]="item.faceRectangle.top * multiplier" [style.left.px]="item.faceRectangle.left * multiplier"
+            [style.height.px]="item.faceRectangle.height * multiplier" [style.width.px]="item.faceRectangle.width * multiplier"></div>
+        </div>
+      </div>
+    
+    
+    </div>
+  </div>
+
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">Raw Text Analysis Results</div>
+    <div class="modal-body">
+      <pre>{{detectedFaces | json}}</pre>
+    </div>
+  </ng-template>
+
+</div>

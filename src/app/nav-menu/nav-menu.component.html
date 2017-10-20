@@ -1,0 +1,34 @@
+<nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
+  <a class="navbar-brand" [routerLink]="['/']">Face API Explorer</a>
+
+  <div class="collapse navbar-collapse xnavbar-nav xnav">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-item nav-link" [routerLink]="['/']" [routerLinkActive]="['active']">
+            <span class='fa fa-home'></span> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" [routerLink]="['/person-groups']" [routerLinkActive]="['link-active']">
+            <span class='fa fa-users'></span> Configure
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" [routerLink]="['/test-faces']" [routerLinkActive]="['link-active']">
+            <span class='fa fa-eye'></span> Test Faces
+        </a>
+      </li>
+      
+    </ul>
+
+    <form class="form-inline">
+      <select name="baseUrls" class="form-control" [(ngModel)]="faceApiMetadata.selectedFaceEndpoint">
+        <option value="">(Select Endpoint)</option>
+        <option *ngFor="let item of faceApiMetadata.validBaseUrls" [value]="item">{{item}}</option>
+      </select>
+      <input type="text" name="faceApiKey" class="form-control" placeholder="Specify API Key" [(ngModel)]="faceApiMetadata.faceApiKey">
+    </form>
+
+  </div>
+</nav>

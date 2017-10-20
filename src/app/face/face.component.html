@@ -1,0 +1,32 @@
+<div>
+  <div [ngBusy]="busy"></div>
+
+  <div class="container">
+    <div class="card">
+      <h3 class="card-header">Face</h3>
+      <div class="card-block">
+        <div class="row">
+          <button class="btn btn-primary mr-sm-1">Edit</button>
+          <button class="btn btn-danger mr-sm-1" (click)="deletePersonFace()">Delete</button>
+        </div>
+        <div class="row mt-sm-3">
+          <div class="col-md-2 text-right">Face ID:</div>
+          <div class="col">{{face.persistedFaceId}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 text-right">URL (User Data):</div>
+          <div class="col">{{face.userData}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 text-right">Image:</div>
+          <div class="col">
+            <span *ngIf="face.userData" class="img-container"><img class="img-person-face img-thumnail" [src]="face.userData" height="140" width="140" /></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
