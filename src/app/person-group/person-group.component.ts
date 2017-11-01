@@ -16,7 +16,7 @@ import { ConfirmModalComponent, ConfirmModalProperties } from '../shared-compone
 })
 export class PersonGroupComponent implements OnInit {
   public busy: Subscription;
-  public personGroup = {};
+  public personGroup: any = {};
   public personGroupId: string;
   public persons = [];
   

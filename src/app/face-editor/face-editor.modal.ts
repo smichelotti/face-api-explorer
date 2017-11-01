@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 })
 export class FaceEditorModal implements OnInit {
     public action = 'Add';
-    public editableItem = {};//: any;
+    public editableItem: any = {};
     public entry: any;
 
     constructor(public activeModal: NgbActiveModal) { }
